@@ -1,1 +1,174 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+ int data;
+  struct node *next;
+};
+void create();
+void insertion_after();
+void display();
+void deletion();
+void insertion_before();
+struct node *head,*tail,*trav,*trav1;
+int main()
+{
+    while(1){
+    int choice;
+    printf("\nEnter 1 for creation\nEnter 2 for insertion_after\nEnter 3 for deletion\nEnter 4 for display\nEnter 5 for insertion_before\n");
+    printf("\nEnter ur choice\n");
+    scanf("%d",&choice);
+    if(choice==1)
+    {
+        create();
+    }
+    else if(choice==2)
+    {
+        insertion_after();
+   }
+    else if(choice==3)
+    {
+        deletion();
+    }
+    else if(choice==4)
+    {
+        display();
+    }
+    else if(choice==5)
+    {
+        insertion_before();
+    }
+    else
+    {
+        exit(0);
+    }
+}}
+void create()
+{
+    struct node *temp;
+    int n,i;
+    head=0,tail=0;
+    printf("Enter no of nodes to insert::");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        printf("Enter data::");
+        scanf("%d",&temp->data);
+        temp->next=0;
+        if(head==0)
+        {
+            head=tail=temp;
+            tail->next=head;
+        }
+        else
+        {
+            tail->next=temp;
+            tail=temp;
+            tail->next=head;
+        }
+    }
+//    printf("%d\n",tail->next->data);
+
+}
+void display()
+{
+    printf("\nElements of linked list:");
+    trav=head;
+    while(trav->next!=head)
+    {
+        printf("%d\n",trav->data);
+        trav=trav->next;
+    }
+    printf("%d",trav->data);
+}
+void insertion_after()
+{
+            struct node *temp;
+    int n;
+    trav=head;
+    printf("Enter the node after which u want to insert\n");
+    scanf("%d",&n);
+    while(trav->data!=n)
+    {
+        trav=trav->next;
+    }
+    if(trav==tail)
+    {
+
+        temp=(struct node*)malloc(sizeof(struct node));
+          printf("Enter data::");
+        scanf("%d",&temp->data);
+        trav->next=temp;
+        tail=temp;
+        tail->next=head;
+    }
+    else
+    {
+          temp=(struct node*)malloc(sizeof(struct node));
+          printf("Enter data::");
+        scanf("%d",&temp->data);
+        temp->next=trav->next;
+        trav->next=temp;
+    }
+}
+void insertion_before()
+{
+           struct node *temp;
+    int n;
+    trav=head;
+    printf("Enter the node before which u want to insert\n");
+    scanf("%d",&n);
+    while(trav->data!=n)
+    {
+        trav1=trav;
+        trav=trav->next;
+    }
+    if(trav==head)
+    {
+
+        temp=(struct node*)malloc(sizeof(struct node));
+          printf("Enter data::");
+        scanf("%d",&temp->data);
+         temp->next=head;
+        head=temp;
+        tail->next=head;
+    }
+    else
+    {
+          temp=(struct node*)malloc(sizeof(struct node));
+          printf("Enter data::");
+        scanf("%d",&temp->data);
+        temp->next=trav;
+        trav1->next=temp;
+    }
+}
+void deletion()
+{
+      int n;
+    trav=head;
+    printf("Enter the node u want to delete\n");
+    scanf("%d",&n);
+    while(trav->data!=n)
+    {
+        trav1=trav;
+        trav=trav->next;
+    }
+    if(trav==head)
+    {
+        head=trav->next;
+        free(trav);
+        tail->next=head;
+    }
+    else if(trav==tail)
+    {
+        trav1->next=head;
+        free(trav);
+        tail=trav1;
+    }
+    else
+    {
+        trav1->next=trav->next;
+        free(trav);
+    }
+}
 
