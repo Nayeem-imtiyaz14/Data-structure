@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+int pop();
+void push(int);
+int peek();
+void display();
+struct node{
+   int data;
+   struct node *next;
+};
+struct node *top=0,*temp;
+int main()
+{
+    int choice;
+    while(1)
+    {
+        printf("Enter 1 for push\nEnter 2 for pop\nEnter 3 for peek\nEnter 4 for view\n");
+        printf("Enter choice :");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+                int n;
+                printf("Enter data to be pushed:");
+                scanf("%d",&n);
+                push(n);
+                break;
+            case 2:
+                int m;
+                m=pop();
+                printf("\nPopped element is %d",m);
+                break;
+            case 3:
+                int z;
+                z=peek();
+                printf("\nTop element is %d",z);
+                break;
+            case 4:
+                display();
+                break;
+            default:
+                printf("Enter valid choice");
+        }
+    }
+}
+void push(int n)
+{
+    temp=(struct node*)malloc(sizeof(struct node));
+    if(temp==0)
+    {
+        printf("stack overflow");
+    }
+    else{
+    temp->data=n;
+    temp->next=top;
+    top=temp;
+}}
+int pop()
+{
+    temp=top;
+    if(top==0)
+    {
+        printf("stack underflow");
+    }
+    else
+        {
+
+    int data;
+    data=temp->data;
+    top=top->next;
+    free(temp);
+    return(data);}
+}
+int peek()
+{
+    return(top->data);
+}
+void display()
+{
+    struct node *trav=top;
+    while(trav!=0)
+    {
+        printf("%d  ",trav->data);
+        trav=trav->next;
+    }
+}
