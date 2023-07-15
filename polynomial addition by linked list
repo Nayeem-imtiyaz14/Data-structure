@@ -19,6 +19,7 @@ int main()
      display1();
      printf("\n");
       display2();
+      printf("\n");
       add();
 }
     void create1()
@@ -128,11 +129,21 @@ void add()
 }
  while(head2!=0)
  {
-    printf("%dx^%d",head1->coff,head1->exp);
+    printf("%dx^%d",head2->coff,head2->exp);
     head2=head2->next;
     if(head2!=0)
     {
         printf("+");
     }
  }
+  while(head1!=0)
+ {
+    printf("%dx^%d",head1->coff,head1->exp);
+    head1=head1->next;
+    if(head1!=0)
+    {
+        printf("+");
+    }
+ }
+
 }
