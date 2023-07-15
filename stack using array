@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+int top=-1;
+int stack[10];
+void push(int);
+int pop();
+int peek();
+void display();
+int main()
+{
+    int choice,n,item,m;
+    while(1)
+    {
+        printf("Enter 1 for push\n");
+        printf("Enter 2 for pop\n");
+        printf("Enter 3 for peek\n");
+        printf("Enter 4 for display\n");
+        printf("Enter choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:printf("Enter element to be pushed:");
+            scanf("%d",&n);
+            push(n);
+            break;
+            case 2:
+                 item=pop();
+                printf("popped element is %d",item);
+                break;
+            case 3:
+                 m=peek();
+                printf("top element is %d",m);
+                break;
+            case 4:
+                display();
+            default:
+                printf("Enter a valid choice");
+        }
+    }
+}
+void push(int n)
+{
+    if(top==9)
+    {
+        printf("Stack overflow");
+    }
+    else{
+    top++;
+    stack[top]=n;
+    }
+}
+int pop()
+{
+    if(top==-1)
+    {
+        printf("stack underflow");
+    }
+    else
+    {
+    return(stack[top--]);
+    }
+}
+int peek()
+{
+if(top==-1)
+{
+    printf("stack is empty");
+}
+else
+{
+    return(stack[top]);
+}
+}
+void display()
+{
+    int i;
+    for(i=0;i<=top;i++)
+    {
+        printf("%d  ",stack[i]);
+    }
+}
