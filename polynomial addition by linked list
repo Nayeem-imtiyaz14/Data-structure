@@ -1,0 +1,138 @@
+#include<stdio.h>
+#include<stdlib.h>
+void create1();
+void create2();
+void display1();
+void display2();
+void add();
+void display();
+struct node
+{
+    int coff,exp;
+    struct node *next;
+};
+struct node *head1,*tail1,*head2,*tail2,*temp,*trav;
+int main()
+{
+  create1();
+    create2();
+     display1();
+     printf("\n");
+      display2();
+      add();
+}
+    void create1()
+{
+    struct node *temp;
+    int n,i;
+    head1=0,tail1=0;
+    printf("Enter no of nodes to insert::");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        printf("Enter coff::");
+        scanf("%d",&temp->coff);
+        printf("Enter exp::");
+        scanf("%d",&temp->exp);
+        temp->next=0;
+        if(head1==0)
+        {
+            head1=tail1=temp;
+        }
+        else
+        {
+            tail1->next=temp;
+            tail1=temp;
+        }
+    }
+}
+   void create2()
+{
+    struct node *temp;
+    int n,i;
+    head2=0,tail2=0;
+    printf("Enter no of nodes to insert::");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        printf("Enter coff::");
+        scanf("%d",&temp->coff);
+        printf("Enter exp::");
+        scanf("%d",&temp->exp);
+        temp->next=0;
+        if(head2==0)
+        {
+            head2=tail2=temp;
+        }
+        else
+        {
+            tail2->next=temp;
+            tail2=temp;
+        }
+    }
+}
+void display1()
+{
+    trav=head1;
+    while(trav!=0)
+    {
+        printf("%dx^%d",trav->coff,trav->exp);
+        trav=trav->next;
+    if(trav!=0)
+    {
+        printf("+");
+    }
+    }
+
+}
+
+void display2()
+{
+    trav=head2;
+    while(trav!=0)
+    {
+        printf("%dx^%d",trav->coff,trav->exp);
+        trav=trav->next;
+        if(trav!=0)
+        {
+        printf("+");
+        }
+    }
+}
+void add()
+{
+    while(head1!=0 && head2!=0){
+  if(head1->exp == head2->exp)
+  {
+      printf(" %dx^%d",head1->coff+head2->coff,head1->exp);
+      head1=head1->next;
+      head2=head2->next;
+  }
+  else if(head1->exp > head2->exp)
+  {
+      printf(" %dx^%d",head1->coff,head1->exp);
+      head1=head1->next;
+  }
+  else
+      {
+      printf("%dx^%d",head2->coff,head2->exp);
+      head2=head2->next;
+  }
+  if(head1!=0 && head2!=0)
+  {
+      printf("+");
+  }
+
+}
+ while(head2!=0)
+ {
+    printf("%dx^%d",head1->coff,head1->exp);
+    head2=head2->next;
+    if(head2!=0)
+    {
+        printf("+");
+    }
+ }
+}
